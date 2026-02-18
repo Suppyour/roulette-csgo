@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Box, Avatar, IconButton, Badge } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+
 
 const Navbar: React.FC = () => {
     return (
@@ -12,13 +12,7 @@ const Navbar: React.FC = () => {
                 </Typography>
 
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                    {/* Balance Display */}
-                    <Box sx={{ display: 'flex', alignItems: 'center', bgcolor: 'rgba(255,255,255,0.05)', borderRadius: 2, px: 2, py: 0.5 }}>
-                        <AccountBalanceWalletIcon color="secondary" sx={{ mr: 1 }} />
-                        <Typography variant="body1" fontWeight="bold">
-                            $1,250.00
-                        </Typography>
-                    </Box>
+
 
                     {/* Notifications */}
                     <IconButton size="large" color="inherit">

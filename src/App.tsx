@@ -12,42 +12,60 @@ function App() {
     const [fullTape, setFullTape] = useState<IItem[]>([]);
     const [offset, setOffset] = useState(0);
 
+    const generateTape = () => {
+        const tempTape: IItem[] = [];
+        for (let i = 0; i < 80; i++) {
+            const randomIndex = Math.floor(Math.random() * items.length);
+            tempTape.push(items[randomIndex]);
+        }
+        return tempTape;
+    };
+
     const handleSpin = () => {
+        if (isSpin || items.length === 0) return;
 
+        // Generate a Completely NEW tape for this spin
+        const newTape = generateTape();
+
+        // Pick a random winner
         const winner = items[Math.floor(Math.random() * items.length)];
-        const newTape = [...fullTape];
+        // Place winner at the winning index (75)
         newTape[75] = winner;
+
         setFullTape(newTape);
-
-        if (isSpin) return;
-
         setIsSpin(true);
+
+        // Reset offset to 0 to start animation from the beginning
         setOffset(0);
 
+        // Allow a small delay for the render to update with the new tape at position 0
+        // before starting the animation to the target offset
         setTimeout(() => {
-            const newOffset = ((75 * 150) - (600 / 2) + (150 / 2) + (Math.random() * 50 - 25));
-            setOffset(newOffset);
+            // Calculate random stop position within the winning item
+            // 75 * 150 (item width) = start of winning item
+            // - (600 / 2) + (150 / 2) = center the item in the viewport (viewport 600px, item 150px)
+            // + random offset (-25 to +25) to simulate realistic friction
+            const randomOffset = Math.floor(Math.random() * 50 - 25);
+            const targetOffset = (75 * 150) - (600 / 2) + (150 / 2) + randomOffset;
+            setOffset(targetOffset);
         }, 50);
 
         setTimeout(() => {
             setIsSpin(false);
-        }, 8000);
+        }, 8500); // Slightly longer than the CSS transition to be safe
     };
+
     const [isSpin, setIsSpin] = useState(false);
 
     useEffect(() => {
         getItems().then(data => {
             setItems(data);
-            const tempTape: IItem[] = [];
+            // Initial tape just for visuals before first spin
+            const initialTape: IItem[] = [];
             for (let i = 0; i < 80; i++) {
-                const randomIndex = Math.floor(Math.random() * data.length);
-                tempTape.push(data[randomIndex]);
+                initialTape.push(data[Math.floor(Math.random() * data.length)]);
             }
-            if (data.length > 0) {
-                tempTape[75] = data[Math.floor(Math.random() * data.length)];
-            }
-
-            setFullTape(tempTape);
+            setFullTape(initialTape);
         });
     }, []);
 

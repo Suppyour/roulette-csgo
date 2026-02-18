@@ -17,15 +17,33 @@ const RouletteContainer: React.FC<RouletteContainerProps> = ({ children }) => {
                 height: '200px',
                 mx: 'auto',
                 mb: 4,
-                bgcolor: '#0a0a0a', // Darker background
-                borderRadius: 0, // Sharp
+                bgcolor: '#0a0a0a',
+                backgroundImage: `
+                    linear-gradient(rgba(108, 93, 211, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(108, 93, 211, 0.05) 1px, transparent 1px)
+                `,
+                backgroundSize: '20px 20px',
+                borderRadius: '8px',
                 border: '1px solid #333',
-                borderTop: '2px solid #6C5DD3', // Tech accent
-                borderBottom: '2px solid #6C5DD3', // Tech accent
-                boxShadow: '0 0 40px rgba(0,0,0,0.8) inset',
+                boxShadow: '0 0 50px rgba(0,0,0,0.8) inset, 0 0 20px rgba(108, 93, 211, 0.2)',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center' // Centers the tape
+                justifyContent: 'center',
+                overflow: 'hidden',
+                '&::before': { // Top accent line
+                    content: '""',
+                    position: 'absolute',
+                    top: 0, left: 0, right: 0, height: '2px',
+                    background: 'linear-gradient(90deg, transparent, #6C5DD3, transparent)',
+                    zIndex: 2
+                },
+                '&::after': { // Bottom accent line
+                    content: '""',
+                    position: 'absolute',
+                    bottom: 0, left: 0, right: 0, height: '2px',
+                    background: 'linear-gradient(90deg, transparent, #6C5DD3, transparent)',
+                    zIndex: 2
+                }
             }}
         >
             {/* Visual Center Marker (The Pointer) */}
@@ -36,30 +54,32 @@ const RouletteContainer: React.FC<RouletteContainerProps> = ({ children }) => {
                     bottom: 0,
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    width: '4px',
-                    bgcolor: 'secondary.main',
+                    width: '2px',
+                    bgcolor: '#FFC857',
                     zIndex: 10,
-                    boxShadow: '0 0 15px #FFC857', // Glow effect
+                    boxShadow: '0 0 15px #FFC857',
                     pointerEvents: 'none',
                     '&::after': {
                         content: '""',
                         position: 'absolute',
-                        top: -5,
+                        top: 0,
                         left: '50%',
                         transform: 'translateX(-50%)',
-                        borderLeft: '10px solid transparent',
-                        borderRight: '10px solid transparent',
-                        borderTop: '15px solid #FFC857',
+                        borderLeft: '12px solid transparent',
+                        borderRight: '12px solid transparent',
+                        borderTop: '20px solid #FFC857',
+                        filter: 'drop-shadow(0 0 5px #FFC857)'
                     },
                     '&::before': {
                         content: '""',
                         position: 'absolute',
-                        bottom: -5,
+                        bottom: 0,
                         left: '50%',
                         transform: 'translateX(-50%)',
-                        borderLeft: '10px solid transparent',
-                        borderRight: '10px solid transparent',
-                        borderBottom: '15px solid #FFC857',
+                        borderLeft: '12px solid transparent',
+                        borderRight: '12px solid transparent',
+                        borderBottom: '20px solid #FFC857',
+                        filter: 'drop-shadow(0 0 5px #FFC857)'
                     }
                 }}
             />
