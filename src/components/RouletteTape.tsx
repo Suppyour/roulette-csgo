@@ -25,7 +25,7 @@ export default function RouletteTape({ items = [], offset }: Props) {
                 transform: `translateX(-${offset}px)`,
                 willChange: 'transform', // Performance optimization
             }}>
-                {items.map(skin => <RouletteItem key={skin.id} items={skin} />)}
+                {items.map((skin, index) => <RouletteItem key={`${skin.id}-${index}`} items={skin} />)}
             </Box>
         </Box>
     );
