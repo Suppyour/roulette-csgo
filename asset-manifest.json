@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/roulette-csgo/static/js/main.7f3bfcfe.js",
+    "main.js": "/roulette-csgo/static/js/main.d5f0dea8.js",
     "index.html": "/roulette-csgo/index.html",
-    "main.7f3bfcfe.js.map": "/roulette-csgo/static/js/main.7f3bfcfe.js.map"
+    "main.d5f0dea8.js.map": "/roulette-csgo/static/js/main.d5f0dea8.js.map"
   },
   "entrypoints": [
-    "static/js/main.7f3bfcfe.js"
+    "static/js/main.d5f0dea8.js"
   ]
 }
