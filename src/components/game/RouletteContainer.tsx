@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import { Box, Paper, Typography } from '@mui/material';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { Box, Paper } from '@mui/material';
+
 
 interface RouletteContainerProps {
     children: ReactNode;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Grid, Typography, Stack } from '@mui/material';
+import { Box, Button, Typography, Stack } from '@mui/material';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 
 interface GameControlsProps {
