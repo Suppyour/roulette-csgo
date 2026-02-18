@@ -13,6 +13,8 @@ export interface ISpinResult {
 
 export enum Color {
     'blue' = 'blue',
+    'purple' = 'purple',
     'red' = 'red',
     'gold' = 'gold',
+    'green' = 'green'
 }
