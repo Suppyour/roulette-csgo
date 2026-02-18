@@ -1,8 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {getItems} from "./api/items";
-import {IItem} from "./types";
+import React, { useEffect, useState } from 'react';
+import { getItems } from "./api/items";
+import { IItem } from "./types";
 import RouletteTape from "./components/RouletteTape";
-import {Button} from "@mui/material";
+import MainLayout from "./components/layout/MainLayout";
+import RouletteContainer from "./components/game/RouletteContainer";
+import GameControls from "./components/game/GameControls";
+import { Box } from "@mui/material";
 
 function App() {
     const [items, setItems] = useState<IItem[]>([]);
@@ -49,20 +52,19 @@ function App() {
     }, []);
 
     return (
-        <div className="App" style={{
-            backgroundColor: '#121212',
-            minHeight: '100vh',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center'
-        }}>
-            {fullTape.length > 0 && <RouletteTape items={fullTape} offset={offset}/>}
-            <div style={{marginTop: '1%'}}>
-                <Button variant="contained" color="success" disabled={isSpin} onClick={handleSpin}>КРУТИТЬ!</Button>
-            </div>
-        </div>
+        <MainLayout>
+            <Box sx={{ textAlign: 'center', mb: 4 }}>
+                {/* Optional: Add a title or status text here */}
+            </Box>
 
+            <RouletteContainer>
+                {fullTape.length > 0 && <RouletteTape items={fullTape} offset={offset} />}
+            </RouletteContainer>
+
+            <GameControls onSpin={handleSpin} isSpinning={isSpin} />
+
+            {/* Recent History or other components could go here */}
+        </MainLayout>
     );
 }
 
